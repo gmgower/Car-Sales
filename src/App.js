@@ -5,44 +5,57 @@ import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
+
 // 8 import connect from react-redux
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-const App = (props) => {
-const {state} = props
+// 12 import buyFeature fron actions
+import {buyFeature} from './actions' 
+
+const App = props => {
+console.log("TCL: props", props)
   
-
+  const { state, buyFeature } = props;
 
   const removeFeature = item => {
     // dispatch an action here to remove an item
   };
 
-  const buyItem = item => {
+
+  const buyItem = (item, price) => {
     // dipsatch an action here to add an item
+   
   };
 
   return (
-    <div className="boxes">
-      <div className="box">
+    <div className='boxes'>
+      <div className='box'>
         <Header car={props.state.car} />
         <AddedFeatures car={props.state.car} />
       </div>
-      <div className="box">
-        <AdditionalFeatures store={props.state.store} />
-        <Total car={props.state.car} additionalPrice={props.state.additionalPrice} />
+      <div className='box'>
+        {/* 13 pass buyFeature */}
+        <AdditionalFeatures store={props.state.store} buyFeature={buyFeature} />
+        <Total
+          car={props.state.car}
+          additionalPrice={props.state.additionalPrice}
+        />
       </div>
     </div>
   );
 };
 
 // 10 Define mapSTP
-const mapStateToProps = state =>{
-console.log("TCL: state", state)
-return {
-  state
-}
-  
-}
+const mapStateToProps = state => {
+  console.log('TCL: state', state);
+  return {
+    state
+  };
+};
 
-// 9 wrap App component with connect inside second call from 1st call. Pass mapSTP and empty obj 
-export default connect(mapStateToProps, {})(App);
+// 9 wrap App component with connect inside second call from 1st call. Pass mapSTP and empty obj
+// 13 pass buyFeature into obj
+export default connect(
+  mapStateToProps,
+  {buyFeature}
+)(App);

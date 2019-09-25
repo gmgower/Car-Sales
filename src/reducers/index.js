@@ -1,3 +1,4 @@
+
 // 3 build a initialreducer by putting state(initialState)in the reducer
 const initialState = {  
         additionalPrice: 0,
@@ -19,8 +20,28 @@ const initialState = {
 // 4  
 const reducer = (state = initialState, action) => {
 console.log("TCL: reducer -> action", action)
-    
+// 14 create switch for 
+    switch(action.type){
+        case "BUY_FEATURE":
+            if(state.car.features.find(feature => feature.id === action.payload.id)){
+                return state;
+            } else {
+                return {
+                    ...state,
+                    car: {
+                        ...state.car,
+                        price: state.car.price + action.payload.price,
+                        features: [...state.car.features, action.payload]
+                    }
+                }
+            }
+
+            default:
         return state;
+
+    }
+    
+
 
 }
 
