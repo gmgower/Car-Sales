@@ -10,16 +10,17 @@ import Total from './components/Total';
 import { connect } from 'react-redux';
 
 // 12 import buyFeature fron actions
-import {buyFeature} from './actions' 
+// 17 import removeFeature
+import {buyFeature, removeFeature} from './actions' 
 
 const App = props => {
 console.log("TCL: props", props)
   
-  const { state, buyFeature } = props;
+  const { state, buyFeature, removeFeature} = props;
 
-  const removeFeature = item => {
+  // const removeFeature = item => {
     // dispatch an action here to remove an item
-  };
+  // };
 
 
   const buyItem = (item, price) => {
@@ -31,7 +32,8 @@ console.log("TCL: props", props)
     <div className='boxes'>
       <div className='box'>
         <Header car={props.state.car} />
-        <AddedFeatures car={props.state.car} />
+        {/* 19 removeFeature  */}
+        <AddedFeatures car={props.state.car} removeFeature={removeFeature} />
       </div>
       <div className='box'>
         {/* 13 pass buyFeature */}
@@ -55,7 +57,8 @@ const mapStateToProps = state => {
 
 // 9 wrap App component with connect inside second call from 1st call. Pass mapSTP and empty obj
 // 13 pass buyFeature into obj
+// 18 pass removeFeature into obj
 export default connect(
   mapStateToProps,
-  {buyFeature}
+  {buyFeature, removeFeature}
 )(App);
