@@ -1,10 +1,13 @@
 import React from 'react';
 
 const AddedFeature = props => {
-  return (
+console.log("TCL: AddedFeatureprops", props)
+
+    return (
     <li>
-      {/* Add an onClick to run a function to remove a feature */}
-      <button className="button">X</button>
+      {/* 21 Add an onClick to run a function to remove a feature */}
+      <button className="button"
+      onClick={() => props.removeFeature(props.feature)}>X</button>
       {props.feature.name}
     </li>
   );
